@@ -5,12 +5,12 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api', // proxied to http://localhost:5000 via vite.config.js
+  baseURL: 'https://hostel-finder-backend-f5yu.onrender.com/api',
   headers: { 'Content-Type': 'application/json' },
   timeout: 15000,
 });
 
-// ── Request interceptor — attach JWT ─────────────────────────────────────────
+// Request interceptor — attach JWT
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('hf_token');
@@ -22,7 +22,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// ── Response interceptor — handle global 401 ─────────────────────────────────
+// Response interceptor — handle global 401
 api.interceptors.response.use(
   (response) => response,
   (error) => {
